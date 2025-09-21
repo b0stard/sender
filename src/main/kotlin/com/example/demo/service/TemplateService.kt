@@ -13,6 +13,6 @@ private val templateRepository: TemplateRepository
 {
     @Transactional
     fun findByChannelType(channelType: String): List<Template>{
-        return findByChannelType(channelType)
+        return templateRepository.findByChannelType(channelType)
     }
 }
