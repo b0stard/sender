@@ -34,13 +34,11 @@ class NotificationService(
                         NotificationRequest(eventId, "telegram", "Привет! Ваша регистрация прошла успешно.")
                     )
                 }
-
                 "order_placed" -> {
                     createNotificationIfMissing(
                         NotificationRequest(eventId, "email", "Ваш заказ ${eventDto.eventData} размещен.")
                     )
                 }
-
                 else -> {
                     logger.warn("Нет логики для создания уведомлений для типа события: ${eventDto.eventType}")
                 }
@@ -51,7 +49,6 @@ class NotificationService(
             logger.error("Неожиданная ошибка при обработке события ${eventDto.eventType}: ${e.message}", e)
         }
     }
-
     private fun createNotificationIfMissing(request: NotificationRequest) {
         val existingNotifications =
             notificationRepository.findByEventIdAndChannelType(request.eventId, request.channelType)

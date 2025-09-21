@@ -36,14 +36,14 @@ class NotificationController(
         }
     }
     @GetMapping("/{id}")
-    fun getNotificationById(@PathVariable id: Long): ResponseEntity<Any> {
+    fun getNotificationById(@PathVariable id: Long): ResponseEntity<NotificationDTO> {
         return try {
             val notification = notificationService.getNotificationById(id)
             ResponseEntity.ok(notification.toDTO())
         } catch (e: NotificationNotFoundException) {
             ResponseEntity.notFound().build()
         } catch (e: Exception) {
-            ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.message ?: "Внутренняя ошибка сервера")
+            ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
         }
     }
     @GetMapping("/status/{status}")
