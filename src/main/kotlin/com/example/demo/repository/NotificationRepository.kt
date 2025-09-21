@@ -7,8 +7,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface NotificationRepository : JpaRepository<Notification, Long> {
     fun findByStatus(status: String): List<Notification>
-
     fun findByEventIdAndChannelType(eventId: Long, channelType: String): List<Notification>
-
     fun findByStatusAndAttemptsLessThan(status: String, maxAttempts: Int): List<Notification>
 }

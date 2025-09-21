@@ -65,7 +65,6 @@ class NotificationService(
 
     @Transactional
     fun createNotification(request: NotificationRequest): Notification {
-        // Базовая валидация входных данных
         if (request.eventId <= 0) throw InvalidNotificationDataException("ID события должно быть положительным")
         if (request.channelType.isBlank()) throw InvalidNotificationDataException("Тип канала не может быть пустым")
         if (request.payload.isBlank()) throw InvalidNotificationDataException("Содержимое уведомления не может быть пустым")
