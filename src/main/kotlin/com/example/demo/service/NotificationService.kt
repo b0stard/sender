@@ -18,8 +18,8 @@ class NotificationService(
     private val notificationRepository: NotificationRepository,
     @Value("\${notification.max-retries:3}") private val maxRetries: Int,
     @Value("\${notification.retry-delay-seconds:10}") private val retryDelaySeconds: Long
-) {
-    private val logger = LoggerFactory.getLogger(NotificationService::class.java)
+) { private val logger = LoggerFactory.getLogger(NotificationService::class.java)
+
 
     @Transactional
     fun processEventAndGenerateNotifications(eventDto: EventDto) {
@@ -28,8 +28,7 @@ class NotificationService(
         try {
             when (eventDto.eventType) {
                 "user_registered" -> {
-                    createNotificationIfMissing(
-                        NotificationRequest(eventId, "email", "Добро пожаловать, ${eventDto.eventData}!")
+                    createNotificationIfMissing(NotificationRequest(eventId, "email", "Добро пожаловать, ${eventDto.eventData}!")
                     )
                     createNotificationIfMissing(
                         NotificationRequest(eventId, "telegram", "Привет! Ваша регистрация прошла успешно.")

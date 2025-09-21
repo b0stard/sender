@@ -12,6 +12,6 @@ class EventService (
 {
     @Transactional
     fun findByEventType(eventType: String): List<Event>{
-        return findByEventType(eventType)
+        return eventRepository.findByEventType(eventType)
     }
 }

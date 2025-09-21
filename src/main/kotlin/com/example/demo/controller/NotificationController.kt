@@ -12,6 +12,7 @@ import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.util.UriComponentsBuilder
+import toDTO
 import java.net.URI
 
 @RestController
@@ -20,18 +21,6 @@ class NotificationController(
     private val notificationService: NotificationService,
     @Value("\${notification.max-retries:3}") private val defaultMaxRetries: Int
 ) {
-    private fun Notification.toDTO(): NotificationDTO {
-        return NotificationDTO(
-            id = this.id,
-            eventId = this.eventId,
-            channelType = this.channelType,
-            payload = this.payload,
-            status = this.status,
-            attempts = this.attempts,
-            createdAt = this.createdAt,
-            lastAttemptAt = this.lastAttemptAt
-        )
-    }
     @PostMapping
     fun createNotification(@RequestBody request: NotificationRequest): ResponseEntity<Any> {
         return try {
