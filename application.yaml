@@ -30,27 +30,19 @@ spring:
           processed-events: your-processed-events-topic-name
   application:
     name: notification-service
-
   profiles:
     active: dev
-
-
 server:
   port: 8080
-
 logging:
   level:
     root: INFO
     com.example.notificationservice: DEBUG
-
-
 spring.datasource:
   url: jdbc:postgresql://localhost:5432/demo
   username: dbuser
   password: dbpassword
   driver-class-name: org.postgresql.Driver
-
-
 spring.jpa:
   hibernate:
     ddl-auto: update
@@ -58,33 +50,6 @@ spring.jpa:
     hibernate:
       dialect: org.hibernate.dialect.PostgreSQLDialect
   show-sql: false
-
-
-spring.kafka:
-  bootstrap-servers: localhost:9092
-  consumer:
-    group-id: notification-service-group
-    auto-offset-reset: earliest
-    key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-    value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-  producer:
-    key-serializer: org.apache.kafka.common.serialization.StringSerializer
-    value-serializer: org.apache.kafka.common.serialization.StringSerializer
-
-
-spring.mail:
-  host: smtp.example.com
-  port: 587
-  username: dipper7979@gmail.com
-  password: 12345678
-  properties:
-    mail:
-      smtp:
-        auth: true
-        starttls:
-          enable: true
-
-
 telegram:
   bot:
     token: 7971737657:AAFsbkIH0qzgFx3BxYnstRFdBotfswTR5Us
