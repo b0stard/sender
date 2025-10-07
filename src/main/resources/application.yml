@@ -54,8 +54,6 @@ kafka:
 telegram:
   chat:
     id: 7971737657
-  bot:
-    token: 7971737657:AAFsbkIH0qzgFx3BxYnstRFdBotfswTR5Us
 notification:
   max-retries: 3
   retry-delay: 60
