@@ -1,0 +1,61 @@
+spring:
+  datasource:
+    jpa:
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+      show-sql: false
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: dipper7979@gmail.com
+    password: 12345678
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  kafka:
+    bootstrap-servers: localhost:9092
+
+    consumer:
+      group-id: notification-service-group
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      auto-commit-interval: 100ms
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    properties:
+      spring.deserializer.trusted-packages: "com.example.demo.model.dto"
+
+  application:
+    name: notification-service
+  profiles:
+    active: dev
+server:
+  port: 8080
+logging:
+  level:
+    root: INFO
+    com.example.notificationservice: DEBUG
+kafka:
+  topic:
+    processed-events: your-processed-events-topic-name
+telegram:
+  chat:
+    id: 7971737657
+  bot:
+    token: 7971737657:AAFsbkIH0qzgFx3BxYnstRFdBotfswTR5Us
+notification:
+  max-retries: 3
+  retry-delay: 60
